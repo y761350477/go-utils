@@ -1,7 +1,7 @@
 // @title main.go
 // @description ES 工具类
 // @author YC - 2021/1/8 9:42
-package es
+package yc_es
 
 import (
 	"bytes"

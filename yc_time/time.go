@@ -1,4 +1,4 @@
-package time
+package yc_time
 
 import (
 	"math/rand"

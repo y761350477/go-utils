@@ -1,8 +1,8 @@
-package path
+package yc_path
 
 import (
 	"github.com/chenhg5/collection"
-	"github.com/y761350477/go-utils/yc/regex"
+	"github.com/y761350477/go-utils/yc_regex"
 	"os"
 	"path/filepath"
 )
@@ -46,5 +46,5 @@ func IsExt(path, suffix string) bool {
 // @Return  string "目录路径"
 func GetParentDirName(path string) string {
 	dir := filepath.Dir(path)
-	return regex.RegexRemove(dir, `.*\\+`)
+	return yc_regex.RemoveMatch(dir, `.*\\+`)
 }

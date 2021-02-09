@@ -1,4 +1,4 @@
-package archive
+package yc_archive
 
 import "github.com/mholt/archiver"
 

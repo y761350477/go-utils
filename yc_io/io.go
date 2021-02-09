@@ -1,8 +1,8 @@
-package io
+package yc_io
 
 import (
 	"bufio"
-	"github.com/y761350477/go-utils/yc/str"
+	"github.com/y761350477/go-utils/yc_str"
 	"io"
 	"io/ioutil"
 	"os"
@@ -348,7 +348,7 @@ func GetAllDirs(path string) ([]string, error) {
 
 	for _, fi := range dir {
 		if fi.IsDir() {
-			dirPath1 := path + str.PthSep + fi.Name()
+			dirPath1 := path + yc_str.PthSep + fi.Name()
 			tempDirs = append(tempDirs, dirPath1)
 			dirs = append(dirs, dirPath1)
 			GetAllDirs(dirPath1)

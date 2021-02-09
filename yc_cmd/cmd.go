@@ -1,4 +1,4 @@
-package cmd
+package yc_cmd
 
 import (
 	"fmt"

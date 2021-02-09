@@ -1,4 +1,4 @@
-package streams
+package yc_streams
 
 import (
 	"sort"

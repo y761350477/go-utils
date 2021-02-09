@@ -1,4 +1,4 @@
-package md
+package yc_md
 
 import "fmt"
 

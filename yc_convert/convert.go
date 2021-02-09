@@ -1,4 +1,4 @@
-package convert
+package yc_convert
 
 import (
 	"bytes"

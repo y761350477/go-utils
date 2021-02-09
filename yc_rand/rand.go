@@ -1,4 +1,4 @@
-package rand
+package yc_rand
 
 import (
 	"math/rand"
