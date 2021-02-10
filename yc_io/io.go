@@ -407,3 +407,11 @@ func IsContainsContent(path, content string) (bool, error) {
 	}
 	return yc_regex.MatchExist(buffer, content), nil
 }
+
+func FilterFileLineContent(path, content string) (string, error) {
+	buffer, err := ReadFileBuffer(path)
+	if err != nil {
+		return "", err
+	}
+	return yc_regex.Match(buffer, ".*"+content+".*"), nil
+}
