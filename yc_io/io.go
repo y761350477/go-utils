@@ -2,6 +2,7 @@ package yc_io
 
 import (
 	"bufio"
+	"github.com/y761350477/go-utils/yc_regex"
 	"github.com/y761350477/go-utils/yc_str"
 	"io"
 	"io/ioutil"
@@ -392,4 +393,17 @@ func DeleteEmptyDirs(path string) error {
 	}
 
 	return nil
+}
+
+// @Summary 判断文件是否包含指定内容
+// @Param 	path string "文件路径"
+// @Param 	content string "内容（支持正则）"
+// @Return 	bool "是否存在"
+// @Return 	error "异常信息"
+func IsContainsContent(path, content string) (bool, error) {
+	buffer, err := ReadFileBuffer(path)
+	if err != nil {
+		return false, err
+	}
+	return yc_regex.MatchExist(buffer, content), nil
 }
