@@ -67,6 +67,17 @@ func ReadFileLine(filePath string) (string, error) {
 	return str.String(), nil
 }
 
+func resolveBufSize(bufSize []int) int {
+	switch len(bufSize) {
+	case 0:
+		return 2048
+	case 1:
+		return bufSize[0]
+	default:
+		panic("too many parameters")
+	}
+}
+
 // @Summary 读取文件内容（指定缓存大小，默认 1024）
 // @Param   filepath string "文件路径"
 // @Param   bufferSize int "缓存大小，默认 1024"
@@ -74,18 +85,15 @@ func ReadFileLine(filePath string) (string, error) {
 // @Return  error "异常信息"
 func ReadFileBuffer(filePath string, bufSize ...int) (string, error) {
 	var (
-		file     *os.File
-		reader   *bufio.Reader
-		err      error
-		buf      []byte
-		n        int
-		bufSizeT int
+		file       *os.File
+		reader     *bufio.Reader
+		err        error
+		buf        []byte
+		n          int
+		bufferSize int
 	)
-	if len(bufSize) > 0 {
-		bufSizeT = bufSize[0]
-	} else {
-		bufSizeT = 1024
-	}
+
+	bufferSize = resolveBufSize(bufSize)
 
 	file, err = os.Open(filePath)
 	if err != nil {
@@ -94,7 +102,7 @@ func ReadFileBuffer(filePath string, bufSize ...int) (string, error) {
 	defer file.Close()
 	reader = bufio.NewReader(file)
 
-	buf = make([]byte, bufSizeT)
+	buf = make([]byte, bufferSize)
 	var str strings.Builder
 	for {
 		n, err = reader.Read(buf)

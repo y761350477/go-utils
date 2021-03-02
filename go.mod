@@ -5,6 +5,7 @@ go 1.15
 require (
 	github.com/atotto/clipboard v0.1.2
 	github.com/chenhg5/collection v0.0.0-20200925143926-f403b87088f9
+	github.com/dlclark/regexp2 v1.4.0 // indirect
 	github.com/dsnet/compress v0.0.1 // indirect
 	github.com/elastic/go-elasticsearch/v8 v8.0.0-20201229214741-2366c2514674
 	github.com/mholt/archiver v3.1.1+incompatible

@@ -1,6 +1,7 @@
 package yc_regex
 
 import (
+	"github.com/dlclark/regexp2"
 	"regexp"
 	"strings"
 )
@@ -82,4 +83,42 @@ func MatchLen(text, regex string) int {
 	re = regexp.MustCompile(regex)
 	match = re.FindAllStringSubmatch(text, -1)
 	return len(match)
+}
+
+func MatchPreReplace(src, reg, repl string) (string, error) {
+	compile, err := regexp2.Compile(reg, 0)
+	if err != nil {
+		return "", err
+	}
+
+	return compile.Replace(src, repl, 0, -1)
+}
+
+func MatchPreExist(str, reg string) (bool, error) {
+	re := regexp2.MustCompile(reg, 0)
+	matchString, err := re.MatchString(str)
+	if err != nil {
+		return false, err
+	}
+	return matchString, nil
+}
+
+func MatchPre(str, reg string) ([]string, error) {
+	re, err := regexp2.Compile(reg, 0)
+	if err != nil {
+		return nil, err
+	}
+
+	var matches []string
+	if m, _ := re.FindStringMatch(str); m != nil {
+		for m != nil {
+			matches = append(matches, m.String())
+			m, _ = re.FindNextMatch(m)
+
+			// log.Println(m.String()) // 奇怪，打印到最后一个竟然报空指针！
+		}
+		return matches, nil
+	}
+
+	return nil, nil
 }
